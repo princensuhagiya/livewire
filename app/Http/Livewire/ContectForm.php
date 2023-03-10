@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContectEmail;
 
 class ContectForm extends Component
 {
@@ -32,15 +34,18 @@ class ContectForm extends Component
     {
         $validatedData = $this->validate();
 
-        Contact::create([
-
+        $contact =  Contact::create([
             'first_name' => $validatedData['firstName'],
             'last_name' => $validatedData['lastName'],
             'email' => $validatedData['email'],
             'phone' => $validatedData['phone'],
             'message' => $validatedData['message'],
 
+
+
         ]);
+
+        Mail::to('princesuhagiya191@gmail.com')->send(new ContectEmail($contact));
 
         $this->resetForm();
         $this->successMessage = 'This Contect Form is successFully Submited!';
