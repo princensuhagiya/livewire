@@ -32,7 +32,6 @@ class ContectForm extends Component
     {
         $validatedData = $this->validate();
 
-
         Contact::create([
 
             'first_name' => $validatedData['firstName'],
@@ -43,25 +42,17 @@ class ContectForm extends Component
 
         ]);
 
-
         $this->resetForm();
-
         $this->successMessage = 'This Contect Form is successFully Submited!';
     }
-
-
-
     private function resetForm()
     {
-
         $this->firstName = null;
         $this->lastName = null;
         $this->email = null;
         $this->phone = null;
         $this->message = null;
     }
-
-
     public function render()
     {
         return view('livewire.contect-form');
