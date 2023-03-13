@@ -14,7 +14,7 @@ class ContectFormTest extends TestCase
 
     public function test_main_page_contains_contect_form_livewire_component(): void
     {
-        $response = $this->get('/home');
+        $response = $this->get('/');
 
         $response->assertSeeLivewire('contect-form');
     }
